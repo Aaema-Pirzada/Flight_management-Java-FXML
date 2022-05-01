@@ -1,0 +1,35 @@
+void READ() throws Exception{
+       BufferedReader br = new BufferedReader(new FileReader("src/main/java/test/ars/Flights.txt"));
+       String line = null;
+       Flight F = new Flight(0,"","","",0);
+       FlightsLinkedList<Flight> f = new FlightsLinkedList<Flight>();
+       while ((line = br.readLine()) != null) {
+           String[] values = line.split(",");
+           F.flightNumber= Integer.parseInt(values[0]);
+           F.airlineName=values[1];
+           F.source=values[2];
+           F.destination=values[3];
+           F.capacity= Integer.parseInt(values[4]);
+           f.add(F,null);
+           f.display();
+       }
+       br.close();
+
+       BufferedReader br1 = new BufferedReader(new FileReader("src/main/java/test/ars/passengers.txt"));
+       String line1 = null;
+       Passengers P = new Passengers(0,0,"","","",null);
+       System.out.print("Name   PassNO     Nationality    TicNO    FlightNO    Birthdate ");
+       while ((line1 = br1.readLine()) != null) {
+           String[] values = line1.split(",");
+           P.flightNumber= Integer.parseInt(values[0]);
+           P.ticketNumber= Integer.parseInt(values[1]);
+           P.fullName=values[2];
+           P.passportNumber=values[3];
+           P.nationality=values[4];
+           P.birthDate= new SimpleDateFormat("dd/MM/yyyy").parse(values[5]);
+           System.out.print(P.fullName +"  "+ P.passportNumber+ "  " +P.nationality+"  " + P.ticketNumber+"  "+P.flightNumber+"  "+values[5]+"\n");
+       }
+       br1.close();
+
+
+   }
